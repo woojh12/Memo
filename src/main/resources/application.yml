@@ -1,0 +1,27 @@
+#spring.application.name=Memo
+
+#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+#spring.datasource.url=jdbc:mysql://localhost:3306/dulumary
+#spring.datasource.username=root
+#spring.datasource.password=root
+ 
+#mybatis.mapper-locations=mappers/*Mapper.xml
+
+#spring.thymeleaf.cache=false
+
+spring:
+  config:
+    import: security-variable.yml
+  application:
+    name: Memo
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/memo
+    username: root
+    password: ${mysql.password}
+  thymeleaf:
+   cache: false
+  mvc:
+    static-path-pattern: /static/**
+mybatis: 
+  mapper-locations: mappers/*Mapper.xml
