@@ -6,16 +6,16 @@ import java.security.NoSuchAlgorithmException;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-// Spring bean에 등록하기 위한 annotation
-@Component("md5Hashing")
-public class MD5HashingEncoder implements HashingEncoder{
-	
-	// byte 단위로 암호화 됨
+// 의존성 우선순위 부여
+@Primary
+//Spring bean에 등록하기 위한 annotation
+@Component("sha256Hashing")
+public class SHA256HashingEncoder implements HashingEncoder {
 	public String encode(String message)
 	{
 		String result = "";
 		try {
-			MessageDigest messageDigest = MessageDigest.getInstance("md5");
+			MessageDigest messageDigest = MessageDigest.getInstance("sha256");
 			
 			byte[] bytes = message.getBytes();
 			
