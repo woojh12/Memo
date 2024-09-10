@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" 
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-	  <header class="d-flex align-items-center justify-content-between">
-	            <h1 class="ml-4">Memo</h1>
-	            
-	            <div th:if="${session.userId != null}" class="mr-4">
-	               <span th:text="${session.userName}">사용자</span> <a href="/user/logout">로그아웃</a>
-	            </div>
-	        </header>
+    <header class="d-flex align-items-center justify-content-between">
+	   <h1 class="ml-4">Memo</h1> 
+	       <div th:if="${session.userId != null}" class="mr-4">
+	           <span th:text="${session.userName}">사용자</span> <a href="/user/logout">로그아웃</a>
+	       </div>
+	</header>
 </html>

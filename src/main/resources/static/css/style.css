@@ -17,6 +17,12 @@ header
 	width : 400px;
 	background-color : #cccccc;
 }
+
+.contents > .post-box
+{
+    width:800px;
+}
+
 footer
 {
 	height : 70px;

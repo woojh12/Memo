@@ -3,5 +3,31 @@
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorate="~{layouts/default}">
         
-        <section layout:fragment="contents"></section>
+        <section class="contents d-flex justify-content-center" layout:fragment="contents">
+            <div class="post-box my-5">
+               <h1 class="text-center">메모 리스트</h1>
+               
+               <table class="table text-center mt-3">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>제목</th>
+                            <th>작성 시간</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="memo:${memoList}">
+                            <td th:text="${memo.id}">155</td>
+                            <!-- th:href="@{/post/detail-view(id=${memo.id})}" -->
+                            <td><a th:href="|/post/detail-view?id=${memo.id}|" th:text="${memo.title}">오늘 할일</a></td>
+                            <td th:text="${temporals.format(memo.createdAt, 'yyyy-MM-dd HH:mm')}">2024-09-10 20:33</td>
+                        </tr>
+                    </tbody>
+               </table>
+               <div class="d-flex justify-content-end mt-3">
+	               <a href="/post/create-view" class="btn btn-secondary">메모 쓰기</a>               
+               </div>
+            </div>
+        </section>
+        
 </html>
