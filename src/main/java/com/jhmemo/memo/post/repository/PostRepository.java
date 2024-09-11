@@ -10,5 +10,5 @@ import com.jhmemo.memo.post.domain.Post;
 public interface PostRepository extends JpaRepository<Post, Integer>{
 	
 	// ORDER BY `id` DESC
-	public Post findByUserIdOrderByIdDesc(int userId);
+	public List<Post> findByUserIdOrderByIdDesc(int userId);
 }

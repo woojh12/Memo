@@ -18,9 +18,11 @@
                     <tbody>
                         <tr th:each="memo:${memoList}">
                             <td th:text="${memo.id}">155</td>
-                            <!-- th:href="@{/post/detail-view(id=${memo.id})}" -->
-                            <td><a th:href="|/post/detail-view?id=${memo.id}|" th:text="${memo.title}">오늘 할일</a></td>
-                            <td th:text="${temporals.format(memo.createdAt, 'yyyy-MM-dd HH:mm')}">2024-09-10 20:33</td>
+                            <!-- 둘다 동일하게 사용가능 -->
+                            <!-- <td><a th:href="|/post/detail-view?id=${memo.id}|" th:text="${memo.title}">오늘 할일</a></td> -->
+                            <!-- <td><a th:href="@{/post/detail-view(id=${memo.id})}" th:text="${memo.title}">오늘 할일</a></td> -->
+                           	<td><a th:href="|/post/detail-view?id=${memo.id}|" th:text="${memo.title}">오늘 할일</a></td>
+                            <td th:text="${#temporals.format(memo.createdAt, 'yyyy-MM-dd HH:mm')}">2024-09-10 20:33</td>
                         </tr>
                     </tbody>
                </table>
