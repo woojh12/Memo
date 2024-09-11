@@ -32,10 +32,13 @@
     
     <select id="selectUser" parameterType="map" resultType="com.jhmemo.memo.user.domain.User">
         SELECT
-            `loginId`
+            id
+              ,`loginId`
               , `password`
               , `name`
               , `email`
+              , `createdAt`
+              , `updatedAt`
         FROM
             `user`
         WHERE
