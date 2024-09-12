@@ -19,6 +19,20 @@
         
         <script layout:fragment="script">
             $(document).ready(function(){
+                // 중복확인 여부
+                var checkDuplicate = false;
+                
+                // 중복 여부(아이디)
+                var isDuplicateId = true;
+                
+                $("#idInput").on("input", function(){
+                	// 중복 확인 과정 초기화
+                	checkDuplicate = false;
+                	isDuplicateId = true;
+                	$("#avaliableText").addClass("d-none");
+                	$("#duplicateText").addClass("d-none");
+                });
+                
             	$("#duplicateBtn").on("click", function(){
             		let id = $("#idInput").val();
             		
@@ -27,12 +41,15 @@
                          alert("아이디를 입력하세요.");
                          return;
                      }
-            		 
+            		 	 
             		 $.ajax({
             			 type:"get"
             			 , url:"/user/duplicate-id"
             			 , data:{"loginId":id}
             		     , success:function(data){
+            		    	 
+            		    	 checkDuplicate = true;
+            		    	 isDuplicateId = data.isDuplicate;
             		    	 if(data.isDuplicate)
             		    	 {
             		    		 $("#duplicateText").removeClass("d-none");
@@ -56,12 +73,26 @@
                     let passwordConfirm = $("#passwordConfirmInput").val();
                     let name = $("#nameInput").val();
                     let email = $("#emailInput").val();
-                    
+                   
                     if(id == "")
                     {
                         alert("아이디를 입력하세요.");
                         return;
                     }
+                    
+                    // 아이디 중복확인
+                    if(!checkDuplicate)
+                    {
+                       alert("중복확인 버튼을 눌러주세요.");
+                       return;
+                    }
+                    
+                    if(isDuplicateId)
+                    {
+                    	alert("아이디가 중복되었습니다.");
+                    	return;
+                    }
+                    
                     if(password == "")
                     {
                         alert("비밀번호를 입력하세요.");
