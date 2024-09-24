@@ -61,4 +61,50 @@ public class FileManager {
 		
 		return "/images" + directoryName + "/" + file.getOriginalFilename();
 	}
+	
+	// 폴더 안의 파일 삭제 함수
+	public static boolean removeFile(String filePath)
+	{
+		if(filePath == null)
+		{
+			return false;
+		}
+		
+		String fullFilePath = FILE_UPLOAD_PATH + filePath.replace("/images", "");
+		
+		Path path = Paths.get(fullFilePath);
+		Path directoryPath = path.getParent();
+		
+		// 파일이 존재하는지 확인
+		if(Files.exists(path) && Files.exists(directoryPath))
+		{
+			try {
+				Files.delete(path);
+				Files.delete(directoryPath);
+			} catch (IOException e) {
+				return false;
+			}
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+		/*	// 폴더와 디렉토리 분리해서 파일과 디렉토리를 분리하여 제거하는 방식
+		// 폴더(디렉토리) 제거
+		path = path.getParent();	// 상위경로 리턴
+		
+		if(Files.exists(path))
+		{
+			try {
+				Files.delete(path);
+			} catch (IOException e) {
+				return false;
+			}
+		}
+		
+		return true;
+		*/
+	}
 }

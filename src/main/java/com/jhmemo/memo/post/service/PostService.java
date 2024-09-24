@@ -48,4 +48,44 @@ public class PostService {
 		
 		return post;
 	}
+	
+	public Post updatePost(int id, String title, String contents)
+	{
+		Optional<Post> optionalPost = postRepository.findById(id);
+		
+		Post post = optionalPost.orElse(null);
+		
+		if(post != null)
+		{
+			Post updatePost = post.toBuilder()
+				.title(title)
+				.contents(contents)
+				.build();
+			return postRepository.save(updatePost);
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	public boolean deletePost(int id)
+	{
+		Optional<Post> optionalPost = postRepository.findById(id);
+		
+		Post post = optionalPost.orElse(null);
+		
+		if(post != null)
+		{
+			// 폴더 안의 삭제 이미지 경로 추출
+			FileManager.removeFile(post.getImagePath());
+			
+			postRepository.delete(post);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

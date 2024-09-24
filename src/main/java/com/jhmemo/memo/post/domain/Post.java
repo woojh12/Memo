@@ -16,7 +16,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Builder
+@Builder(toBuilder=true)	// toBuilder : 객체를 수정해서 가져오는 것
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
